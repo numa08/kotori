@@ -10,8 +10,9 @@ object Application extends Controller {
   lazy val commands = Map("numa08" -> new Numa08Commands)
   
   def hook(name:String) = Action {
-    val command = commands(name)
-    command.doIt
-    Ok(name)
+    commands.get(name) match {
+      case Some(command) => command.doIt();Ok(name)
+      case None => BadRequest
+    }
   }
 }
