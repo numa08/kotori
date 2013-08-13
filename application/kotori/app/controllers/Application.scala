@@ -15,7 +15,7 @@ object Application extends Controller {
     commands.get(name).map( command => {
       allCatch either command.doIt() match {
         case Left(e) => NotImplemented(e.getMessage)
-        case Right(u) => Ok
+        case Right(result) => Ok(result)
       }
       }).getOrElse(BadRequest)
   }

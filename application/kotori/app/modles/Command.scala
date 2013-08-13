@@ -1,5 +1,5 @@
 package models
 
 trait Command {
-  def doIt
+  def doIt:String
 }
