@@ -14,7 +14,7 @@ object Application extends Controller {
   def hook(name:String) = Action {
     commands.get(name).map( command => {
       allCatch either command.doIt() match {
-        case Left(e) => NotImplemented
+        case Left(e) => NotImplemented(e.getMessage)
         case Right(u) => Ok
       }
       }).getOrElse(BadRequest)
